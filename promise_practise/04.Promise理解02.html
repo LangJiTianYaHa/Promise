@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise理解</title>
+</head>
+
+<body>
+    <script>
+        //1.提前定义好一个等待被调用的函数
+        window.peiqi = function (result) {
+            console.log(result) 
+        }
+        //2.创建一个script节点
+        const scriptNode = document.createElement('script')
+        //3.为节点指定src地址，同时指定好回调函数的名字
+        scriptNode.src = 'http://baobab.kaiyanapp.com/api/v4/discovery/hot'
+        //4.将节点插入页面
+        document.body.appendChild(scriptNode)
+
+
+        /* 使用Promise封装异步ajax请求 */
+        function myAsyncFunction(url) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", url);
+                xhr.onload = () => resolve(JSON.parse(xhr.responseText)); // 成功的回调
+                xhr.onerror = () => reject(xhr.statusText); // 出错的回调
+                xhr.send();
+            });
+        };
+
+        // myAsyncFunction('https://api.apiopen.top/getJoke?page=1&count=2&type=video')
+        myAsyncFunction('http://baobab.kaiyanapp.com/api/v4/discovery/hot')
+
+            .then(
+                value => {
+                    console.log('成功了', value)
+                },
+                reason => {
+                    console.log('失败了', reason)
+                }
+            )
+
+        //https://dict.youdao.com/jsonapi
+        // http://baobab.kaiyanapp.com/api/v4/discovery/hot
+    </script>
+
+</body>
+
+</html>
