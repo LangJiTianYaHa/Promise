@@ -1,0 +1,13 @@
+{
+  "name": "hello",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:LangJiTianYaHa/Promise.git",
+  "author": "LangJiTianYaHa <2414965060@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.7"
+  }
+}
